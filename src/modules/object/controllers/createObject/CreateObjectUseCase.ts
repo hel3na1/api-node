@@ -1,31 +1,20 @@
+import Todo from "models/Todo";
 import { ObjectTest } from "../../../../schemas/ObjectTest";
 
 interface IRequest {
-  name: string;
-  array: [];
-  object: {
-    objName: string;
-    objValue: number;
-  };
-  number: number;
+  nome: string;
+  duracao:number;
+
 }
 
 class CreateObjectUseCase {
   async execute({
-    name,
-    array,
-    object,
-    number
+    nome,
+    duracao
   }: IRequest) {
     try {
-      const Object = await ObjectTest.create({
-        name,
-        array,
-        object,
-        number
-      });
-
-      return Object;
+      const todo = await Todo.create({ nome, duracao });
+      return todo;
     } catch (error) {
       return 401
     }

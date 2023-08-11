@@ -4,15 +4,13 @@ import { CreateObjectUseCase } from "./CreateObjectUseCase";
 
 class CreateObjectController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, array, object, number } = request.body;
+    const { nome, duracao } = request.body;
 
     const createObjectUseCase = new CreateObjectUseCase();
 
     const createObject = await createObjectUseCase.execute({
-      name,
-      array,
-      object,
-      number
+      nome,
+      duracao 
     });
 
     if (createObject === 401) {
